@@ -25,13 +25,11 @@ public class MatrixRotation {
     }
 
     private void rotate(int[][] matrix){
-        int noOfRows = matrix.length;
-        int noOfCols = matrix[0].length;
-        int[][] rotated = new int[noOfRows][noOfRows];
-        for(int i = 0 ; i <= noOfRows - 1; i++){
+        int[][] rotated = new int[matrix.length][matrix.length];
+        for(int i = 0 ; i < matrix.length; i++){
             int[] row = matrix[i];
-            for(int j = 0; j <= noOfCols - 1; j++){
-                rotated[j][noOfCols - i - 1] = row[j];
+            for(int j = 0; j < matrix.length; j++){
+                rotated[j][matrix.length - i - 1] = row[j];
             }
         }
         printArray(rotated);
