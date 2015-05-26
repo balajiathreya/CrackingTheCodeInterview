@@ -8,15 +8,16 @@ import java.util.List;
  */
 public class Stack {
     protected List<Integer> list = new ArrayList();
-    protected int top;
+    protected int top = -1;
 
     public void push(int x){
-        list.add(x);
         top++;
+        list.add(x);
     }
 
     public int pop(){
-        int x = list.get(--top);
+        int x = list.get(top);
+        top--;
         return x;
     }
 
