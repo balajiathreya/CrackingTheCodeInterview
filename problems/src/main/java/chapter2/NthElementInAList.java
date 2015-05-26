@@ -18,16 +18,33 @@ public class NthElementInAList {
 
     public static void main(String[] args) {
         NthElementInAList nthElementInAList = new NthElementInAList(getAList());
-        nthElementInAList.getNthElementWithBuffer(3);
-        nthElementInAList.getNthElementWithBuffer(2);
-        nthElementInAList.getNthElementWithBuffer(0);
+        nthElementInAList.getNthElementWithStack(3);
+        nthElementInAList.getNthElementWithStack(2);
+        nthElementInAList.getNthElementWithStack(0);
     }
 
     public NthElementInAList(NodeList list){
         this.list = list;
     }
 
-    private void getNthElementWithBuffer(int n){
+    private void getNthElement(int n){
+        int index = n;
+        Node head = list.getHead();
+        Node p1  = head;
+        Node p2  = head;
+        while (index != 0){
+            Node next = p2.getNext();
+            if(next == null){
+                System.out.println("invalid n");
+            }
+            else {
+                p2 = next;
+            }
+            index--;
+        }
+    }
+
+    private void getNthElementWithStack(int n){
         Stack<Node> stack = new Stack<Node>();
         fillStack(stack);
         System.out.println("getting element at position "+ n +" from the last");
