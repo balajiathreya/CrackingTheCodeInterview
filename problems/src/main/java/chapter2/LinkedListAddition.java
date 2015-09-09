@@ -3,7 +3,6 @@ package chapter2;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.LinkedList;
-import java.util.ListIterator;
 
 /**
  * Created by baathreya on 6/4/15.
@@ -30,14 +29,7 @@ public class LinkedListAddition {
         LinkedList<Integer> result = new LinkedList<Integer>();
         while (iterator1.hasNext() && iterator2.hasNext()) {
             int sum = iterator1.next() + iterator2.next() + carry;
-            if(sum < 10) {
-                result.add(sum);
-                carry = 0;
-            }
-            else {
-                result.add(sum % 10);
-                carry = 1;
-            }
+            carry = insertDigit(result, sum);
         }
         while (iterator2.hasNext()){
             carry = insertRemainingFromList(iterator2, carry, result);
@@ -48,8 +40,8 @@ public class LinkedListAddition {
         return result;
     }
 
-    private static int insertRemainingFromList(Iterator<Integer> iterator2, int carry, LinkedList<Integer> result) {
-        int sum = iterator2.next() + carry;
+    private static int insertDigit(LinkedList<Integer> result, int sum) {
+        int carry;
         if(sum < 10) {
             result.add(sum);
             carry = 0;
@@ -58,6 +50,12 @@ public class LinkedListAddition {
             result.add(sum % 10);
             carry = 1;
         }
+        return carry;
+    }
+
+    private static int insertRemainingFromList(Iterator<Integer> iterator2, int carry, LinkedList<Integer> result) {
+        int sum = iterator2.next() + carry;
+        carry = insertDigit(result, sum);
         return carry;
     }
 }
