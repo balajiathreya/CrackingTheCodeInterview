@@ -17,6 +17,7 @@ public class Stack {
 
     public int pop(){
         int x = list.get(top);
+        list.remove(top);
         top--;
         return x;
     }
